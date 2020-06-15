@@ -2,7 +2,7 @@ var http = require('http').Server;
 var io = require('socket.io');
 var ioc = require('socket.io-client');
 var expect = require('expect.js');
-var mubsub = require('mubsub')
+var mubsub = require('@nodebb/mubsub')
 var adapter = require('../');
 
 describe('socket.io-mongo', function(){
@@ -11,10 +11,10 @@ describe('socket.io-mongo', function(){
     var channel = cli.channel('socket.io');
     channel.publish('socket.io', 'init', done);
   });
-  
+
   it('broadcasts', function (done){
     this.timeout(5000);
-    
+
     create(function(server1, client1){
       create(function(server2, client2){
         client1.on('woot', function(a, b){
@@ -31,7 +31,7 @@ describe('socket.io-mongo', function(){
 
   it('broadcasts to rooms', function(done){
     this.timeout(5000);
-    
+
     create(function(server1, client1){
       create(function(server2, client2){
         create(function(server3, client3){
@@ -66,7 +66,7 @@ describe('socket.io-mongo', function(){
       });
     });
   });
-  
+
   // create a pair of socket.io server+client
   function create(nsp, fn){
     var srv = http();
