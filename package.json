@@ -8,7 +8,7 @@
   "dependencies": {
     "debug": "4.1.1",
     "msgpack-js": "0.3.0",
-    "@nodebb/mubsub": "^1.6.0",
+    "@nodebb/mubsub": "^1.6.2",
     "socket.io-adapter": "^1.1.2",
     "uid2": "0.0.3"
   },
