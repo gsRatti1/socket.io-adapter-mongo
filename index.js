@@ -29,8 +29,10 @@ function adapter(uri, opts) {
 	// opts
 	var socket = opts.socket;
 	var client = opts.client;
+	var channel = opts.channel;
 	var key = opts.key || 'socket.io';
 	delete opts.key; // prevent key from being passed to mongoDB (via mubsub) and generating a warning
+	delete opts.channel;
 
 	// init clients if needed
 	if (!client) client = socket ? mubsub(socket) : mubsub(uri, opts);
@@ -38,7 +40,7 @@ function adapter(uri, opts) {
 	// this server's key
 	var uid = uid2(6);
 
-	var channel = client.channel(key);
+	var channel = channel || client.channel(key);
 
 	/**
 	 * Adapter constructor.
